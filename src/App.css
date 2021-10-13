@@ -1,3 +1,6 @@
+*{
+  box-sizing: border-box;
+} 
 .App {
   text-align: center;
 }
@@ -36,3 +39,78 @@
     transform: rotate(360deg);
   }
 }
+
+.navbar-container{
+  padding: 0px;
+  margin : 0px;
+  background-color :black;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.navbar-container h2{
+  color: red;
+  margin-left: 4rem;
+}
+.navbar-container h5{
+  margin-left: 8rem;
+  color: red;
+}
+
+.banner-container{
+  height: 28rem;
+  border: 1px solid;
+  position: relative;
+}
+
+.banner-container img{
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+.banner-container h3{
+  color: white;
+  position: absolute;
+  top: 18.5rem;
+  left: 4rem;
+}
+.banner-container p{
+  color: white;
+  position: absolute;
+  top: 22rem;
+  left: 4rem;
+  max-width: 90vw;
+}
+
+.moviecard-container{
+  margin: 2px;
+}
+
+.moviecard-container .img-container{
+
+}
+
+.moviecard-container img{
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.moviecard-container a{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 17px;
+
+}
+
+.movieCard-box{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-flow: wrap;
+}
+
