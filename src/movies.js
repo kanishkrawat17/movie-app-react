@@ -1,21 +1,6 @@
  export const movies = {
   "results": [
-    {
-      "adult": false,
-      "backdrop_path": "/wsztJfJvJW5nXxn5n0DIMzH2TDM.jpg",
-      "genre_ids": [35, 10749],
-      "id": 347626,
-      "original_language": "en",
-      "original_title": "He's All That",
-      "overview": "To get revenge on her ex-boyfriend, an influencer attempts to transform an unpopular classmate into prom king.",
-      "popularity": 270.343,
-      "poster_path": "https://d13ezvd6yrslxm.cloudfront.net/wp/wp-content/images/jurassicpark-juancarlosruizburgos-variant-full-700x468.jpg",
-      "release_date": "2021-08-27",
-      "title": "He's All That",
-      "video": false,
-      "vote_average": 6.9,
-      "vote_count": 617
-    },
+    
     {
       "adult": false,
       "backdrop_path": null,

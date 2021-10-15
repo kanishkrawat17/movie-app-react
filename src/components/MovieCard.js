@@ -7,7 +7,9 @@ export default class MovieCard extends React.Component {
     movies: [],
     pageArr: [1],
     currPage: 1,
+    favourites : []
   };
+
   componentDidMount() {
     console.log("in mount");
     axios
@@ -74,6 +76,7 @@ export default class MovieCard extends React.Component {
   };
 
   pageClick = (pageNO)=>{
+
     
     console.log("in page click")
     axios
@@ -110,6 +113,48 @@ export default class MovieCard extends React.Component {
   //   })
   // }
 
+
+
+  handleFavourites = (movie)=>{
+
+    let oldArr  = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : [];
+    if(this.state.favourites.includes(movie.id)){
+      oldArr = this.state.favourites.filter((m)=>{
+        return m.id != movie.id;
+      })
+      console.log(oldArr);
+      this.setState({
+        favourites : [...oldArr]
+      })
+      localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+    } else{
+      oldArr.push(movie.id);
+      console.log(oldArr)
+      this.setState({
+        favourites : [...oldArr]
+      })
+      localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+    }
+    
+      // let moviesArray = localStorage.getItem("movies") ? JSON.parse(localStorage.getItem("movies")) : [];
+        
+      // if(moviesArray.length == 0){
+      //   moviesArray.push(movie);
+      //   localStorage.setItem("movies", JSON.stringify(moviesArray))
+      // } else if(!moviesArray.length == 0){
+      //   moviesArray.map((movieObj) => {
+      //     if(movieObj.id == movie.id){
+      //       // localStorage.remove()
+      //       return ;
+      //     } else{
+      //       moviesArray.push(movie);
+      //       localStorage.setItem("movies", JSON.stringify(moviesArray))
+      //     }
+      //   })
+      // }
+     
+  }
+
   render() {
     console.log("in render");
     // let movie = movies.results;
@@ -133,7 +178,14 @@ export default class MovieCard extends React.Component {
                       alt={movieDetails.title}
                     />
                     {/* <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> */}
-                    <a class="btn btn-primary">Movie Plot</a>
+                    <a class="btn btn-primary" onClick= {()=>{
+                      this.handleFavourites(movieDetails)
+                    } }
+                    >
+                      {
+                        this.state.favourites.includes(movieDetails.id) ? "Remove from Fav" : "Add to fav"   
+                      }  
+                      </a>
                   </div>
                 </div>
               );
@@ -150,7 +202,7 @@ export default class MovieCard extends React.Component {
             </li>
             {this.state.pageArr.map((pageNO) => {
               return (
-                <li class="page-item">
+                <li class="page-item" key={pageNO}>
                   <a class="page-link" href="#" onClick = { ()=>{
                     this.pageClick(pageNO)
                   }}>
@@ -171,13 +223,3 @@ export default class MovieCard extends React.Component {
   }
 }
 
-{
-  /* 
-
-movie.map((elt)=>{
-    <img src ={`ksnksn`}/>
-})
-
-
-*/
-}
