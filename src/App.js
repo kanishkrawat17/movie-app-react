@@ -9,10 +9,10 @@ function App() {
     <>
       <Navbar />
       <Banner />
-      <div className = "movieCard-box">
+      
       <MovieCard />
-      </div>
-      <Pagination />
+      
+      
     </>
   );
 }

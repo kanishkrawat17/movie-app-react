@@ -114,3 +114,8 @@
   flex-flow: wrap;
 }
 
+
+.pagination-container{
+  justify-content: center;
+  align-items: center;
+}
