@@ -43,19 +43,19 @@
 .navbar-container{
   padding: 0px;
   margin : 0px;
-  background-color :black;
+  background-color: white;
   height: 4rem;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
 }
 .navbar-container h2{
-  color: red;
-  margin-left: 4rem;
+  color: black;
+  margin-left: 2rem;
 }
 .navbar-container h5{
-  margin-left: 8rem;
-  color: red;
+  margin-left: 4rem;
+  color: black;
 }
 
 .banner-container{

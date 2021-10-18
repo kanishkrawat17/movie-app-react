@@ -11,12 +11,10 @@ function App() {
     <>
       
    <Router>
-   
      <Navbar />
      <Route path="/"   exact component = {Banner} />
      <Route path="/"   exact component = {MovieCard} />
      <Route path="/favourites"  exact component = {Favourite}/> 
- 
    </Router>
           
     </>

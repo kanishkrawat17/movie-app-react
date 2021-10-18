@@ -76,8 +76,6 @@ export default class MovieCard extends React.Component {
   };
 
   pageClick = (pageNO)=>{
-
-    
     console.log("in page click")
     axios
     .get(
@@ -94,66 +92,59 @@ export default class MovieCard extends React.Component {
   }
 
 
-  // handlePrevious = ()=>{
-
-  //   if(this.state.currPage == 1){
-  //     return ;
-  //   }
-  //   this.setState({
-  //     currPage : this.state.currPage -1,
-  //   })
-  //   axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=447ec54a96ca863f96a69340268fbb18&language=en-US&page=${this.state.currPage}`)
-  //   .then((res)=>{
-  //       this.setState({
-  //         ...this.state,
-  //         currPage :  this.state.currPage+1,
-  //         pageArr : tempArr,
-  //         moviesArr : [...res.data.results]
-  //       })
-  //   })
-  // }
-
-
-
   handleFavourites = (movie)=>{
 
-    let oldArr  = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : [];
-    if(this.state.favourites.includes(movie.id)){
+    let oldArr = JSON.parse(localStorage.getItem('movies') || "[]")
+
+    if(this.state.favourites.some(item=> item.id === movie.id)){ // read about this some this should be used whenver we want to check for includes in an array of objects 
       oldArr = this.state.favourites.filter((m)=>{
-        return m.id != movie.id;
+        return m.id != movie.id
       })
-      console.log(oldArr);
-      this.setState({
-        favourites : [...oldArr]
-      })
-      localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+
     } else{
-      oldArr.push(movie.id);
-      console.log(oldArr)
-      this.setState({
-        favourites : [...oldArr]
-      })
-      localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+      oldArr.push(movie);
     }
-    
-      // let moviesArray = localStorage.getItem("movies") ? JSON.parse(localStorage.getItem("movies")) : [];
-        
-      // if(moviesArray.length == 0){
-      //   moviesArray.push(movie);
-      //   localStorage.setItem("movies", JSON.stringify(moviesArray))
-      // } else if(!moviesArray.length == 0){
-      //   moviesArray.map((movieObj) => {
-      //     if(movieObj.id == movie.id){
-      //       // localStorage.remove()
-      //       return ;
-      //     } else{
-      //       moviesArray.push(movie);
-      //       localStorage.setItem("movies", JSON.stringify(moviesArray))
-      //     }
-      //   })
-      // }
-     
+
+    localStorage.setItem("movies", JSON.stringify(oldArr));
+    console.log(oldArr);
+
+    this.setState({
+      favourites : [...oldArr]
+    })
+
   }
+
+
+    // if(oldArr.map((movieObj)=>{
+    //   movieObj.id
+    // }))
+
+
+
+
+
+
+    // let oldArr  = localStorage.getItem('movies') ? JSON.parse(localStorage.getItem('movies')) : [];
+    // if(this.state.favourites.includes(movie.id)){
+    //   oldArr = this.state.favourites.filter((m)=>{
+    //     return m.id != movie.id;
+    //   })
+    //   console.log(oldArr);
+    //   this.setState({
+    //     favourites : [...oldArr]
+    //   })
+    //   localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+    // } else{
+    //   oldArr.push(movie.id);
+    //   console.log(oldArr)
+    //   this.setState({
+    //     favourites : [...oldArr]
+    //   })
+    //   localStorage.setItem("movies", JSON.stringify(this.state.favourites))
+    // }
+    
+     
+  
 
   render() {
     console.log("in render");
@@ -183,7 +174,7 @@ export default class MovieCard extends React.Component {
                     } }
                     >
                       {
-                        this.state.favourites.includes(movieDetails.id) ? "Remove from Fav" : "Add to fav"   
+                        this.state.favourites.some((item)=>{ return item.id == movieDetails.id}) ? "Remove from Favourites" : "Add to favourites"   
                       }  
                       </a>
                   </div>
@@ -221,5 +212,5 @@ export default class MovieCard extends React.Component {
       </>
     );
   }
-}
 
+}
